@@ -655,28 +655,6 @@ def fig2():
     fig.write_image("Results/For paper/fig2.svg", engine="orca")
     fig.write_image("Results/For paper/fig2.pdf", engine="orca")
 
-    df_transformed = (
-        dep.drop("Manganese ores", level=1)
-        .drop("DYE")
-        .unstack()
-        .swaplevel(axis=1)
-        .sort_index(axis=1)
-        .rename(
-            columns={
-                "own": "Aggregated ownership",
-                "own2": "'Real' ownership",
-                "pba": "Aggregated production",
-                "pba2": "'Real' production",
-            }
-        )
-    )
-
-    # Use the ExcelWriter with mode='a' and the openpyxl engine
-    with pd.ExcelWriter(
-        path, engine="openpyxl", mode="a", if_sheet_exists="replace"
-    ) as writer:
-        df_transformed.to_excel(writer, sheet_name="fig3")
-
 
 cons_from_prod_share = cons_from_prod_share.stack(level=0, dropna=False)
 cons_from_own_share = cons_from_own_share.stack(level=0, dropna=False)

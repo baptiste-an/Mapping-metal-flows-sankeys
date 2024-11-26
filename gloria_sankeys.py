@@ -309,7 +309,7 @@ def preprocess_sankey_data(year, region, sankey_type, sankey_subtype=None):
     """Preprocesses and saves all data required to build the Sankey diagram."""
 
     # Your custom logic to define paths and retrieve data
-    position, save_path = variables1(sankey_type)
+    position, save_path = variables1(sankey_type, sankey_subtype)
 
     # read norm
     # ratio = feather.read_feather(save_path + "/norm.feather").loc[region,year] # ends up not being proportional due to some internal plotly setting

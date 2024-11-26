@@ -544,7 +544,7 @@ def constants():
 region_acronyms, dictreg, Dict_cba, colors, ext_RM = constants()
 
 
-def variables1(sankey_type):
+def variables1(sankey_type, sankey_subtype=None):
 
     if sankey_type == "All commodities":
         position = [
@@ -573,7 +573,7 @@ def variables1(sankey_type):
             "3. cba fd",
             "4. cba sect",
         ]
-        save_path = "Results/commodity all ownership"
+        save_path = "Results/commodity all ownership/" + sankey_subtype
         ensure_directory_exists(save_path)
 
     return position, save_path
@@ -816,7 +816,7 @@ def data_Sankey(position, sankey_type, region, year, sankey_subtype, version=59)
 def nodes_data(year, sankey_type, sankey_subtype=None, version=59):
     """For every year and region, saves the files nodes.feather, nodelist.feather and data.feather."""
 
-    position, save_path = variables1(sankey_type)
+    position, save_path = variables1(sankey_type, sankey_subtype)
     os.makedirs(save_path, exist_ok=True)
 
     regions2 = [region for region in region_acronyms.tolist()]
